@@ -1,4 +1,4 @@
-FROM golang
+FROM golang:1.9-alpine
 
 MAINTAINER zterry <zterry@qq.com>
 
