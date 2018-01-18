@@ -1,0 +1,10 @@
+version: "3"
+services:
+  proxy:
+    build: ./
+    #image: zterry95/shadowsocks-client-python
+    volumes:
+      - ./shadowsocks.json:/etc/shadowsocks/config.json
+    ports:
+      - "${SS_LOCAL_PORT}:1080"
+    restart: "always" 
