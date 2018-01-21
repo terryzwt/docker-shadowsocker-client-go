@@ -3,7 +3,11 @@ services:
   proxy:
     image: zterry95/shadowsocker-client-go
     volumes:
-      - ./shadowsocks.json:/etc/shadowsocks/config.json
+        #- ./shadowsocks.json:/etc/shadowsocks/config.json
+      - ./supervisord.conf:/etc/supervisord.conf
+      - ./pgfast:/go/pgfast
+      - ./pgfast/pgconfig.toml:/etc/pgconfig.toml
+      - ./confd:/etc/confd
     ports:
       - "${SS_LOCAL_PORT}:1080"
       - "8123:8123"

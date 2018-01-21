@@ -1,2 +1,3 @@
 shadowsocks.json
 .env
+pgfast/pgconfig.toml

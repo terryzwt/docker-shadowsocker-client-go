@@ -1,0 +1,7 @@
+[template]
+src = "ss-local.tmpl"
+dest = "/etc/shadowsocks-config.json"
+keys = [
+  "/ss-local"
+]
+reload_cmd = "supervisorctl restart ss-local"
