@@ -8,7 +8,7 @@ ENV CONFD_VERSION "0.14.0"
 ##### install polipo #####
 ## https://hub.docker.com/r/vimagick/polipo/~/dockerfile/
 RUN set -xe \
-    && apk add --no-cache build-base openssl \
+    && apk add --no-cache build-base openssl tar \
     && wget https://github.com/jech/polipo/archive/master.zip -O polipo.zip \
     && unzip polipo.zip \
     && cd polipo-master \
@@ -25,16 +25,14 @@ RUN apk add --update ca-certificates openssl tar && \
     wget https://github.com/coreos/etcd/releases/download/v$ETCD_VERSION/etcd-v$ETCD_VERSION-linux-amd64.tar.gz && \
     tar xzvf etcd-v$ETCD_VERSION-linux-amd64.tar.gz && \
     mv etcd-v$ETCD_VERSION-linux-amd64/etcd* /bin/ && \
-    apk del --purge tar openssl && \
     rm -Rf etcd-v$ETCD_VERSION-linux-amd64* /var/cache/apk/*
 
 #### install confd ####
 ## https://github.com/smebberson/docker-alpine/blob/master/alpine-confd/Dockerfile
 RUN apk add --update ca-certificates openssl tar && \
-   wget https://github.com/kelseyhightower/confd/releases/download/v$CONFD_VERSION/confd-$CONFD_VERSION-linux-amd64 -O confd-linux-amd64.tr.gz && \
-   tar xzvf confd-inux-amd64.tar.gz && \
+   wget https://github.com/kelseyhightower/confd/releases/download/v$CONFD_VERSION/confd-$CONFD_VERSION-linux-amd64 -O confd-linux-amd64.tar.gz && \
+   tar xzvf confd-linux-amd64.tar.gz && \
    mv confd-inux-amd64/confd* /bin/ && \
-   apk del --purge tar openssl && \
    rm -Rf confd-inux-amd64* /var/cache/apk/*
 
 #### install shadowsocks-local ####
