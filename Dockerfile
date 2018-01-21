@@ -2,7 +2,7 @@ FROM golang:1.9-alpine
 MAINTAINER zterry <zterry@qq.com>
 
 RUN apk add --no-cache git supervisor
-ENV ETCD_VERSON "3.2.14"
+ENV ETCD_VERSION "3.2.14"
 ENV CONFD_VERSION "0.14.0"
 
 ##### install polipo #####
