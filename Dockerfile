@@ -31,7 +31,7 @@ RUN apk add --update ca-certificates openssl tar && \
 #### install confd ####
 ## https://github.com/smebberson/docker-alpine/blob/master/alpine-confd/Dockerfile
 RUN apk add --update ca-certificates openssl tar && \
-   wget https://github.com/kelseyhightower/confd/releases/download/v$CONFD_VERSION/confd-$CONFD_VERSION-linux-amd64 && \
+   wget https://github.com/kelseyhightower/confd/releases/download/v$CONFD_VERSION/confd-$CONFD_VERSION-linux-amd64 -O confd-linux-amd64.tr.gz && \
    tar xzvf confd-inux-amd64.tar.gz && \
    mv confd-inux-amd64/confd* /bin/ && \
    apk del --purge tar openssl && \
