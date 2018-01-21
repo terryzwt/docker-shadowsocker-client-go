@@ -19,10 +19,9 @@ RUN set -xe \
 RUN go get github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-local
 
 ADD polipo.conf /etc/polipo.conf
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD supervisord.conf /etc/supervisord.conf
 
 EXPOSE 1080
 EXPOSE 8123
 
-#CMD shadowsocks-local -c /etc/shadowsocks/config.json -m rc4-md5
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
