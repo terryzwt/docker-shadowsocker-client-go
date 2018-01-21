@@ -31,11 +31,11 @@ RUN apk add --update ca-certificates openssl tar && \
 #### install confd ####
 ## https://github.com/smebberson/docker-alpine/blob/master/alpine-confd/Dockerfile
 RUN apk add --update ca-certificates openssl tar && \
-   wget https://github.com/kelseyhightower/confd/releases/download/v$CONFD_VERSION/confd-v$CONFD_VERSION-linux-amd64.tar.gz && \
-   tar xzvf confd-v$CONFD_VERSION-linux-amd64.tar.gz && \
-   mv confd-v$CONFD_VERSION-linux-amd64/confd* /bin/ && \
+   wget https://github.com/kelseyhightower/confd/releases/download/v$CONFD_VERSION/confd-$CONFD_VERSION-linux-amd64 && \
+   tar xzvf confd-inux-amd64.tar.gz && \
+   mv confd-inux-amd64/confd* /bin/ && \
    apk del --purge tar openssl && \
-   rm -Rf confd-v$CONFD_VERSION-linux-amd64* /var/cache/apk/*
+   rm -Rf confd-inux-amd64* /var/cache/apk/*
 
 #### install shadowsocks-local ####
 RUN go get github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-local
