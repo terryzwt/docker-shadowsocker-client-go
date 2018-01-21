@@ -30,16 +30,12 @@ RUN apk add --update ca-certificates openssl tar && \
 
 #### install confd ####
 ## https://github.com/smebberson/docker-alpine/blob/master/alpine-confd/Dockerfile
-RUN apk add --update --no-cache --virtual .confd-dependencies go git gcc musl-dev && \
-    git clone https://github.com/kelseyhightower/confd.git /src/confd && \
-    cd /src/confd && \
-    git checkout -q --detach "v$CONFD_VERSION" && \
-    cd /src/confd/src/github.com/kelseyhightower/confd && \
-    GOPATH=/src/confd/vendor:/src/confd go build -a -installsuffix cgo -ldflags '-extld ld -extldflags -static' -x . && \
-    mv ./confd /bin/ && \
-    chmod +x /bin/confd && \
-    apk del .confd-dependencies && \
-    rm -rf /src
+RUN apk add --update ca-certificates openssl tar && \
+   wget https://github.com/kelseyhightower/confd/releases/download/v$CONFD_VERSION/confd-v$CONFD_VERSION-linux-amd64.tar.gz && \
+   tar xzvf confd-v$CONFD_VERSION-linux-amd64.tar.gz && \
+   mv confd-v$CONFD_VERSION-linux-amd64/confd* /bin/ && \
+   apk del --purge tar openssl && \
+   rm -Rf confd-v$CONFD_VERSION-linux-amd64* /var/cache/apk/*
 
 #### install shadowsocks-local ####
 RUN go get github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-local
