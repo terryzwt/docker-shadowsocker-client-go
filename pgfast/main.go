@@ -4,12 +4,10 @@ import (
 	"context"
 	b64 "encoding/base64"
 	"encoding/json"
-	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 	"time"
 
@@ -29,6 +27,7 @@ type PgConfig struct {
 
 func main() {
 	m := multiconfig.NewWithPath("/etc/pgconfig.toml")
+
 	config := new(PgConfig)
 
 	m.Load(config)
@@ -56,9 +55,9 @@ func get_ss_local_config(url string, password string) string {
 	sDec, _ := b64.StdEncoding.DecodeString(string(body))
 	strSlice := strings.Split(string(sDec), "\n")
 
-	pg := SsLocalConfig{}
+	ss_config := SsLocalConfig{}
 
-	pg.Local_port = 1080
+	ss_config.Local_port = 1080
 
 	for _, v := range strSlice {
 		if strings.HasPrefix(v, "ssr://") {
@@ -66,11 +65,11 @@ func get_ss_local_config(url string, password string) string {
 
 			arr := strings.Split(string(ssrDecode), ":")
 			server := []string{arr[0] + ":" + arr[1], password, "rc4-md5"}
-			pg.Server_password = append(pg.Server_password, server)
+			ss_config.Server_password = append(ss_config.Server_password, server)
 		}
 	}
 
-	x, _ := json.Marshal(pg)
+	x, _ := json.MarshalIndent(ss_config, "", "    ")
 	return string(x)
 }
 
@@ -93,9 +92,4 @@ func set_etcd(value string) {
 	} else {
 		log.Printf("Set is done. Metadata is %q\n", resp)
 	}
-}
-
-func command_help() {
-	flag.Usage()
-	os.Exit(1)
 }
