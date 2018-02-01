@@ -1,7 +1,11 @@
 # 介绍
-  pgfast的代理，基于[shadowsocks-go](https://github.com/shadowsocks/shadowsocks-go),可以在多个shadowsocks-server之间自动选择可用server.
-  每小时从pgfast网站订阅一次地址并更新。
-  推荐使用chrome浏览器，并使用SwitchyOmega插件进行浏览器代理上网。
+  pgfast的代理，基于[shadowsocks-go](https://github.com/shadowsocks/shadowsocks-go)。
+  
+  可以在多个shadowsocks-server之间自动选择可用server.
+  
+  每小时从pgfast网站订阅一次地址并更新。
+  
+  推荐使用chrome浏览器，并使用SwitchyOmega插件进行浏览器代理上网。
 
 # 用法
 ```bash
