@@ -1,6 +1,0 @@
-{
-	"local_port": 10810
-	"server_password": [
-		["120.12.120.12:26171", "password", "rc4-md5"]
-	]
-}
