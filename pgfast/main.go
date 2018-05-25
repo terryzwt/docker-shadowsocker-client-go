@@ -26,7 +26,7 @@ type PgConfig struct {
 }
 
 func main() {
-	m := multiconfig.NewWithPath("./pgconfig.toml")
+	m := multiconfig.NewWithPath("/etc/pgconfig.toml")
 
 	config := new(PgConfig)
 
