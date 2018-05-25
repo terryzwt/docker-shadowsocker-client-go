@@ -62,18 +62,14 @@ func get_ss_local_config(url string) string {
 	for _, v := range strSlice {
 		if strings.HasPrefix(v, "ssr://") {
 			ssrDecode, _ := b64.StdEncoding.DecodeString(v[6:])
-			fmt.Println(string(ssrDecode))
 			reg := regexp.MustCompile(`(?P<ip>.*?):(?P<port>\d+):(\w+):(?P<method>.*?):(.*?):(?P<pass>.*?)\/`)
 			arr := reg.FindStringSubmatch(string(ssrDecode))
 			if len(arr) == 7 {
-				fmt.Println(arr[1], arr[2], arr[4], arr[6])
-
 				// arr := strings.Split(string(ssrDecode), ":")
 				// fmt.Println(arr[0], arr[1], arr[5])
 				//非常奇怪，为什么后面加个"="就获得正确结果呢？
 				//有问题的字符串:M0JoQURKOUo
 				pwd, _ := b64.StdEncoding.DecodeString(arr[6] + "=")
-				fmt.Println(string(pwd))
 				server := []string{arr[1] + ":" + arr[2], string(pwd), arr[4]}
 				ss_config.Server_password = append(ss_config.Server_password, server)
 			}
@@ -81,7 +77,6 @@ func get_ss_local_config(url string) string {
 		}
 	}
 	x, _ := json.MarshalIndent(ss_config, "", "    ")
-	fmt.Println(string(x))
 	return string(x)
 }
 
